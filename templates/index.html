@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/main.js"></script>
+</head>
+<body>
+    <h1>Movie Recommendation System</h1>
+    <form method="POST" id="search-form">
+        <label for="movie-search">Search for a movie:</label>
+        <input type="text" id="movie-search" name="movie_search" autocomplete="off">
+        <div id="suggestions"></div>
+        <br>
+        <input type="submit" value="Get Recommendations" id="tet">
+        <!-- Hidden input field to store chosen movie titles -->
+        <input type="hidden" id="chosen-movies" name="chosen_movies">
+    </form>
+
+    <div>
+        <h2>Chosen:</h2>
+        <div id="chosen">
+
+        </div>
+    </div>
+
+    <div>
+        <div id="recommendations">
+            {% for movie in recommendations %}
+            <li>{{ movie }}</li>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
