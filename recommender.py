@@ -5,6 +5,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 movies = pd.read_csv("data.csv")
+movies = movies[:1000]
+
 
 # data cleaning
 movies = movies.fillna('')

@@ -14,6 +14,7 @@ nltk.data.path.append(nltk_data_dir)
 nltk.download('wordnet', download_dir=nltk_data_dir)# Load data
 
 movies = pd.read_csv("data.csv")
+movies = movies[:1000]
 
 # Data cleaning and preprocessing
 movies = movies.fillna('')
