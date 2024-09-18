@@ -1,14 +1,18 @@
 import pandas as pd
 import numpy as np
 import string
+import nltk
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import vstack, csr_matrix, hstack
 import joblib
 from sklearn.preprocessing import MinMaxScaler
-nltk.download('wordnet')
-# Load data
+
+nltk_data_dir = './'
+nltk.data.path.append(nltk_data_dir)
+nltk.download('wordnet', download_dir=nltk_data_dir)# Load data
+
 movies = pd.read_csv("data.csv")
 
 # Data cleaning and preprocessing
