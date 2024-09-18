@@ -13,7 +13,7 @@ movies = pd.read_csv("data.csv")
 
 # Data cleaning and preprocessing
 movies = movies.fillna('')
-movies = movies.map(lambda x: x.lower() if isinstance(x, str) else x)
+movies = movies.applymap(lambda x: x.lower() if isinstance(x, str) else x)
 translator = str.maketrans('', '', string.punctuation)
 movies['genres'] = movies['genres'].apply(lambda x: x.translate(translator))
 movies['keywords'] = movies['keywords'].apply(lambda x: x.translate(translator))
@@ -62,7 +62,7 @@ try:
     cosine_sim = joblib.load('cosine_sim.pkl')
 except FileNotFoundError:
     cosine_sim = cosine_similarity(combined_matrix, combined_matrix)
-    joblib.dump(cosine_sim, 'cosine_sim.pkl')
+    # joblib.dump(cosine_sim, 'cosine_sim.pkl')
 
 # Function to recommend movies based on two input movies
 def recommend_movies2(movieslist, cosine_sim=cosine_sim, df=movies):
