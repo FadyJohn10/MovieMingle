@@ -7,7 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from scipy.sparse import vstack, csr_matrix, hstack
 import joblib
 from sklearn.preprocessing import MinMaxScaler
-
+nltk.download('wordnet')
 # Load data
 movies = pd.read_csv("data.csv")
 
