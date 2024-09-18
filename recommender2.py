@@ -17,7 +17,10 @@ movies = pd.read_csv("data.csv")
 
 # Data cleaning and preprocessing
 movies = movies.fillna('')
-movies = movies.applymap(lambda x: x.lower() if isinstance(x, str) else x)
+movies['genres'] = movies['genres'].map(lambda x: x.lower() if isinstance(x, str) else x)
+movies['keywords'] = movies['keywords'].map(lambda x: x.lower() if isinstance(x, str) else x)
+movies['overview'] = movies['overview'].map(lambda x: x.lower() if isinstance(x, str) else x)
+movies['title'] = movies['title'].map(lambda x: x.lower() if isinstance(x, str) else x)
 translator = str.maketrans('', '', string.punctuation)
 movies['genres'] = movies['genres'].apply(lambda x: x.translate(translator))
 movies['keywords'] = movies['keywords'].apply(lambda x: x.translate(translator))
