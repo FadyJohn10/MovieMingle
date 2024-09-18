@@ -25,12 +25,20 @@ $(document).ready(function() {
     $('#suggestions').on('click', '.choice', function(event) {
         event.preventDefault();
         var selectedMovieTitle = $(this).text();
-        var elem = '<p>' + selectedMovieTitle + '</p>';
-        $('#chosen').append(elem);
         
         var chosenMovies = JSON.parse($('#chosen-movies').val() || '[]');
-        chosenMovies.push(selectedMovieTitle);
-        $('#chosen-movies').val(JSON.stringify(chosenMovies));
+        if(chosenMovies.length < 5){
+            chosenMovies.push(selectedMovieTitle);
+            $('#chosen-movies').val(JSON.stringify(chosenMovies));
+
+            //test card dynamic generation
+            var testElem = '<div class="card"> <img class="card-img-top" src="../static/images/banner.png" alt="Card image cap"><div class="card-body"><h5 class="card-title">'
+            + selectedMovieTitle + '</h5><p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p></div></div>';
+            $('.card-deck').append(testElem);
+        }else{
+            alert("You have already chosen 5 movies.")
+        }
+        
     });
 
     $('#search-form').on('submit', function(event) {
@@ -56,5 +64,7 @@ $(document).ready(function() {
             }
         });
     });
+
+    console.log(ans);
 
 });

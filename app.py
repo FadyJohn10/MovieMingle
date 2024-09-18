@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
-import json
+from recommender2 import recommend_movies2
 from recommender import recommend_movies
 
 app = Flask(__name__)
@@ -26,7 +26,10 @@ def getInputs():
         data = request.get_json()
         chosen_movies = data.get('chosen_movies')
         if chosen_movies:
-            recommendations = recommend_movies(chosen_movies)
+            if len(chosen_movies) == 1:
+                recommendations = recommend_movies(chosen_movies)
+            else:
+                recommendations = recommend_movies2(chosen_movies)
             app.logger.debug('Recommendations: %s', recommendations)
             return jsonify({'recommendations': recommendations})
         else:
