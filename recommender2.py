@@ -21,7 +21,7 @@ movies = movies.applymap(lambda x: x.lower() if isinstance(x, str) else x)
 translator = str.maketrans('', '', string.punctuation)
 movies['genres'] = movies['genres'].apply(lambda x: x.translate(translator))
 movies['keywords'] = movies['keywords'].apply(lambda x: x.translate(translator))
-movies['overview'] = movies['overview'].apply(lambda x: x.translate(translator))
+movies['overview'] = movies['overview'].map(lambda x: x.translate(translator))
 
 # Lemmatization
 lemmatizer = WordNetLemmatizer()
